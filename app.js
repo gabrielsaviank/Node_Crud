@@ -1,1 +1,7 @@
-fs.writeFileSync9('notes.txt', 'Notes App')
+// Requiring 
+const fs = require('fs');
+
+//Writing
+fs.writeFileSync('notes.txt', 'Notes App')
+
+fs.appendFileSync('notes.txt', " First Note")
