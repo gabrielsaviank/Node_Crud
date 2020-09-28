@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const { argv } = require('process');
 // Yargs do the parsing arguments
 const yargs = require('yargs');
-const getNotes = require('./notes.js');
+const notes = require('./notes.js');
 
 
 // Create Add Command 
@@ -22,8 +22,7 @@ yargs.command({
         }
     },
     handler: function(argv){
-        console.log('Title: ' + argv.title)
-        console.log('Body: ' + argv.body)
+        notes.addNote(argv.title, argv.body)
     }
 });
 
@@ -54,7 +53,7 @@ yargs.command({
     }
 });
 
-// add, remove, read, list 
 
+// Parsing
 yargs.parse()
 
