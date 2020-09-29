@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { totalmem } = require('os');
+const chalk = require('chalk');
 
 const getNotes = function () {
     return 'Your Notes...'
@@ -25,6 +26,22 @@ const addNote = function (title, body) {
     }
 };
 
+// Removing Notes 
+const removeNote = function (title) {
+    const notes = loadNotes()
+    //Array Filter
+    const notesToKeep = notes.filter(function(note){
+        return note.title !== title
+    });
+
+    if(notes.length > notesToKeep.length) {
+        console.log(chalk.green.inverse('Note Removed'))
+        saveNotes(notesToKeep)
+    } else {
+        console.log(chalk.red.inverse('No Note Found'))
+    }
+};
+
 //Loading our functions 
 const loadNotes = function(){
     try {
@@ -45,4 +62,5 @@ const saveNotes = function (notes){
 module.exports = {
     getNotes: getNotes,
     addNote: addNote,
+    removeNote: removeNote,
 };
