@@ -1,3 +1,4 @@
+// Some Libraries and others
 const chalk = require('chalk');
 const { argv } = require('process');
 // Yargs do the parsing arguments
@@ -9,15 +10,15 @@ const notes = require('./notes.js');
 // Create Add Command 
 yargs.command({
     command: 'add',
-    describe: 'Add a new note',
+    describe: 'Adicionar Nova Nota',
     builder: {
         title: {
-            describe: 'Note Title',
+            describe: 'Titulo da Nota',
             demandOption: true,
             type: 'string'
         },
         body: {
-            describe: 'Note body',
+            describe: 'Corpo da Nota',
             demandOption: true,
             type: 'string'
         }
@@ -30,10 +31,10 @@ yargs.command({
 // Create Remove Command 
 yargs.command({
     command: 'remove',
-    describe: 'Remove a note',
+    describe: 'Remover Nota',
     builder: {
         title: {
-            describe: 'Note Title',
+            describe: 'Titulo da Nota',
             demandOption: true,
             type: 'string'
         }, 
@@ -46,7 +47,7 @@ yargs.command({
 // Create list Command
 yargs.command({
     command: 'list',
-    describe: 'List your notes',
+    describe: 'Listar Notas',
     handler: function(){
         notes.listNotes()
     }
@@ -55,9 +56,16 @@ yargs.command({
 // Create Read Command
 yargs.command({
     command: 'read',
-    describe: 'Read a Note',
-    handler: function() {
-        console.log('Reading a Note')
+    describe: 'Ler Notas',
+    builder: {
+        title: {
+            describe: 'Titulo da Nota',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler(argv){
+        notes.readNote(argv.title)
     }
 });
 
